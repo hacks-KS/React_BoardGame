@@ -9528,51 +9528,46 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Square = function (_React$Component) {
-  _inherits(Square, _React$Component);
+function Square(props) {
+  return _react2.default.createElement(
+    'button',
+    { className: 'square', onClick: props.onClick },
+    props.value
+  );
+}
 
-  function Square() {
-    _classCallCheck(this, Square);
-
-    var _this = _possibleConstructorReturn(this, (Square.__proto__ || Object.getPrototypeOf(Square)).call(this));
-
-    _this.state = {
-      value: null
-    };
-    return _this;
-  }
-
-  _createClass(Square, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      return _react2.default.createElement(
-        'button',
-        { className: 'square', onClick: function onClick() {
-            return _this2.setState({ value: 'X' });
-          } },
-        this.state.value
-      );
-    }
-  }]);
-
-  return Square;
-}(_react2.default.Component);
-
-var Board = function (_React$Component2) {
-  _inherits(Board, _React$Component2);
+var Board = function (_React$Component) {
+  _inherits(Board, _React$Component);
 
   function Board() {
     _classCallCheck(this, Board);
 
-    return _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this));
+
+    _this.state = {
+      squares: Array(9).fill(null)
+    };
+    return _this;
   }
 
   _createClass(Board, [{
+    key: 'handleClick',
+    value: function handleClick(i) {
+      var squares = this.state.squares.slice();
+      squares[i] = 'X';
+      this.setState({ squares: squares });
+    }
+  }, {
     key: 'renderSquare',
     value: function renderSquare(i) {
-      return _react2.default.createElement(Square, null);
+      var _this2 = this;
+
+      return _react2.default.createElement(Square, {
+        value: this.state.squares[i],
+        onClick: function onClick() {
+          return _this2.handleClick(i);
+        }
+      });
     }
   }, {
     key: 'render',
@@ -9615,8 +9610,8 @@ var Board = function (_React$Component2) {
   return Board;
 }(_react2.default.Component);
 
-var Game = function (_React$Component3) {
-  _inherits(Game, _React$Component3);
+var Game = function (_React$Component2) {
+  _inherits(Game, _React$Component2);
 
   function Game() {
     _classCallCheck(this, Game);
