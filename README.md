@@ -1,7 +1,7 @@
 # React_BoardGame
 React.jsのチュートリアルを実装しました．
 以下のurlを参考にしています．
-・https://facebook.github.io/react/tutorial/tutorial.html
+https://facebook.github.io/react/tutorial/tutorial.html
 
 node.jsとbabelとwebpackを使用しています．
 ※node.jsは各自でインストールしてください．
